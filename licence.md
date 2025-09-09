@@ -1,5 +1,7 @@
 # Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 
+SPDX-License-Identifier: CC-BY-SA-4.0
+
 This work is licensed under the **Creative Commons Attribution-ShareAlike 4.0 International License**.
 
 You are free to:
@@ -19,12 +21,6 @@ You may not apply legal terms or technological measures that legally restrict ot
 
 ---
 
-## No Additional Restrictions
-
-You may not apply terms or use technological measures that legally restrict others from doing anything the license allows.
-
----
-
 ## No Warranty
 
 The work is provided **"as is"**, without warranties or conditions of any kind, either express or implied. The licensor is not liable for any claims, damages, or other liability arising from the use of this work.
@@ -35,5 +31,3 @@ The work is provided **"as is"**, without warranties or conditions of any kind, 
 
 For the complete legal text, see:  
 👉 [https://creativecommons.org/licenses/by-sa/4.0/legalcode](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
-
-This summary is not a substitute for the legal license, but is intended to help users understand the key terms.
