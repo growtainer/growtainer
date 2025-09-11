@@ -3,23 +3,25 @@ Simple. Affordable. Open-Source.
 
 This guide shows you how to build a self-watering, nutrient-optimized planter using food-grade buckets — perfect for balconies, patios, or water-scarce regions.
 
-⚠️ Important Note: Modern food-grade buckets are designed to stack tightly, leaving insufficient space for a water reservoir when one bucket sits inside another of the same diameter.
-
-This guide includes proven workarounds so your system actually works.
-
 ⏱️ Time: 30–60 minutes
 💰 Cost: ~€5–15 (can be lower with recycled materials)
 🔧 Skills: Beginner-friendly
 
 🧰 Materials & Tools
 You’ll Need:
-2 food-grade plastic buckets (10–20L)
-✅ Option 1: Outer bucket larger than inner (e.g., 20L outer, 16L inner) — ideal but rare
-❌ Avoid two buckets of identical size unless you add a support system
+1 or 2 food-grade plastic buckets (10–20+L)
+✅ Option 1: use 1 single bucket as planter: build and insert a rost-style seperator betwen substrate & water reserviour
+✅ Option 2: stacking 2 buckets for the inner bucket to hold the substrate and serve as seperator 
+❌ Avoid two buckets of identical size that stack tightly unless you add a support system to allow for suficient distance between buckets for water capacity
+
+the easiest - and classic option to build is using two 5 gallon bucket with a hight support lid like shown from greenroofgrowers: https://greenroofgrowers.blogspot.com/2008/07/how-make-two-bucket-sub-irrigated.html
+
+Modern buckets ...and options sold wordwide today are stacking more tightly, so it needs a support / distancer for the inner bucket
 Support for inner bucket (choose one):
-3–5 cm plastic lid or ring from a third bucket
-3D-printed substrate grid (Rost) (e.g., Thingiverse #3984315 )
-Commercial self-watering insert (e.g., Tymar WR-Ø30 )
+vertical seperators like shown from https://albopepper.com/self-watering-5-gallon-bucket-planter.php
+horizontal support ring (taken for example from the lid of the bucket or fixig strap / punched tape
+
+
 1 plastic cup (50–100ml, rigid — e.g., yogurt cup) for wicking access
 Drill or soldering tool (for making holes)
 Marker pen
