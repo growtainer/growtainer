@@ -74,12 +74,15 @@
   }
   .section-label::before { content: ""; width: 22px; height: 1px; background: var(--ink-soft); }
   h2 { font-size: clamp(24px, 4.5vw, 36px); margin-bottom: 16px; }
+
+  /* ── HERO with bigger images ── */
   .hero {
     padding-top: 36px; padding-bottom: 56px;
     display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center;
   }
   @media (min-width: 880px) {
-    .hero { grid-template-columns: 1.1fr 1fr; gap: 48px; padding-top: 56px; padding-bottom: 80px; }
+    /* give image side MORE room */
+    .hero { grid-template-columns: 1fr 1.15fr; gap: 56px; padding-top: 56px; padding-bottom: 80px; }
   }
   .hero-meta {
     font-family: 'IBM Plex Mono', monospace;
@@ -87,7 +90,7 @@
     text-transform: uppercase; letter-spacing: 0.12em;
     margin-bottom: 14px;
   }
-  .hero h1 { font-size: clamp(30px, 7vw, 54px); margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(30px, 6.5vw, 50px); margin-bottom: 20px; }
   .hero h1 em { font-style: italic; color: var(--green); font-variation-settings: "SOFT" 100; }
   .hero-lede { font-size: 17px; color: var(--ink-soft); max-width: 480px; margin-bottom: 28px; }
   .hero-cta {
@@ -98,19 +101,76 @@
   }
   .hero-cta:hover { background: var(--green-deep); color: var(--bg); }
   .hero-cta-secondary { margin-left: 14px; font-size: 13px; color: var(--ink-soft); }
-  .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* Image cards: bigger, clickable, mixed object-fit */
+  .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .hero-img {
     background: var(--bg-card); border: 1px solid var(--rule);
-    padding: 12px; box-shadow: 4px 4px 0 var(--rule-soft);
+    padding: 14px; box-shadow: 4px 4px 0 var(--rule-soft);
     display: flex; flex-direction: column;
+    cursor: zoom-in;
+    transition: transform .15s, box-shadow .15s;
   }
-  .hero-img img { width: 100%; display: block; flex: 1; object-fit: cover; min-height: 0; }
+  .hero-img:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--rule-soft);
+  }
+  .hero-img-frame {
+    /* Forces a consistent aspect ratio for both cards on desktop */
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-img img {
+    width: 100%; height: 100%; display: block;
+  }
+  /* sketch: contain so nothing gets cropped */
+  .hero-img.sketch img { object-fit: contain; padding: 4px; }
+  /* photo: cover so it fills nicely */
+  .hero-img.photo img { object-fit: cover; }
   .hero-img figcaption {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9.5px; color: var(--ink-soft);
-    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 10px;
+    font-size: 10px; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 12px;
   }
-  @media (max-width: 540px) { .hero-images { grid-template-columns: 1fr; } }
+  @media (max-width: 540px) {
+    .hero-images { grid-template-columns: 1fr; }
+    .hero-img-frame { aspect-ratio: 4 / 3; }
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(28, 24, 18, 0.92);
+    display: none; align-items: center; justify-content: center;
+    padding: 20px; cursor: zoom-out;
+    opacity: 0; transition: opacity .2s;
+  }
+  .lightbox.active { display: flex; opacity: 1; }
+  .lightbox img {
+    max-width: 100%; max-height: 90vh;
+    object-fit: contain;
+    background: var(--bg-card);
+    padding: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 24px;
+    color: var(--bg); background: none; border: none;
+    font-family: 'Fraunces', serif; font-size: 32px;
+    cursor: pointer; line-height: 1; padding: 0;
+  }
+  .lightbox-caption {
+    position: absolute; bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--bg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+
   .values-intro { color: var(--ink-soft); margin-bottom: 32px; max-width: 640px; }
   .values-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
   @media (min-width: 720px) { .values-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
@@ -259,17 +319,21 @@
     <a href="#fahrplan" class="hero-cta-secondary">Eigenbau-Fahrplan</a>
   </div>
   <div class="hero-images">
-    <figure class="hero-img">
-      <img src="assets/images/growtainer_principle.jpg"
-           alt="Querschnitt-Skizze des Growtainer-Prinzips: Wasserreservoir unten, Erdrost, Substrat mit Dolomit und Urgesteinsmehl, Düngerbänder oben unter Folie."
-           loading="eager">
+    <figure class="hero-img sketch" data-zoom="assets/images/growtainer_principle.jpg" data-caption="Querschnitt-Prinzip · Skizze">
+      <div class="hero-img-frame">
+        <img src="assets/images/growtainer_principle.jpg"
+             alt="Querschnitt-Skizze des Growtainer-Prinzips: Wasserreservoir unten, Erdrost, Substrat mit Dolomit und Urgesteinsmehl, Düngerbänder oben unter Folie."
+             loading="eager">
+      </div>
       <figcaption>Querschnitt-Prinzip · Skizze</figcaption>
     </figure>
-    <figure class="hero-img">
-      <img src="assets/images/paprika_growtainer.jpg"
-           alt="Üppige Paprikapflanze mit grünen und orangefarbenen Früchten, gewachsen in einem Growtainer-Eimer."
-           loading="eager">
-      <figcaption>Paprika-Ernte · September</figcaption>
+    <figure class="hero-img photo" data-zoom="assets/images/paprika_growtainer.jpg" data-caption="Paprika im späten September">
+      <div class="hero-img-frame">
+        <img src="assets/images/paprika_growtainer.jpg"
+             alt="Üppige Paprikapflanze mit grünen und orangefarbenen Früchten, gewachsen in einem Growtainer-Eimer."
+             loading="eager">
+      </div>
+      <figcaption>Paprika im späten September</figcaption>
     </figure>
   </div>
 </section>
@@ -466,6 +530,13 @@
   </div>
 </footer>
 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+  <button class="lightbox-close" aria-label="Schließen">×</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
 <script>
 const SUBSTRATE_FRACTION = 0.80;
 const BASALT_G_PER_L = 40;
@@ -568,6 +639,40 @@ function recalc() {
   document.getElementById(id).addEventListener('input', recalc)
 );
 recalc();
+
+/* ── Lightbox ── */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+function openLightbox(src, caption) {
+  lightboxImg.src = src;
+  lightboxCaption.textContent = caption || '';
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+  // Defer src clear so transition isn't jarring
+  setTimeout(() => { lightboxImg.src = ''; }, 200);
+}
+
+document.querySelectorAll('.hero-img[data-zoom]').forEach(fig => {
+  fig.addEventListener('click', () => {
+    openLightbox(fig.dataset.zoom, fig.dataset.caption);
+  });
+});
+
+lightbox.addEventListener('click', (e) => {
+  // close on backdrop click but not when clicking the image itself
+  if (e.target === lightbox || e.target === lightboxClose) closeLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+});
 </script>
 
 </body>
