@@ -1,128 +1,574 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Growtainer – Open-Source Self-Watering Planters</title>
-  <meta name="description" content="Build your own self-watering, nutrient-optimized planter. Open-source, sustainable, for everyone." />
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      line-height: 1.6;
-      color: #2c3e50;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #f9f9f9;
-    }
-    h1, h2, h3 {
-      color: #27ae60;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .tagline {
-      font-style: italic;
-      color: #7f8c8d;
-      margin: 10px 0;
-    }
-    .hero {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-    }
-    .cta {
-      background: #27ae60;
-      color: white;
-      padding: 15px 25px;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      margin: 10px 0;
-      font-weight: bold;
-    }
-    .cta:hover {
-      background: #219653;
-    }
-    .section {
-      background: white;
-      padding: 25px;
-      margin: 20px 0;
-      border-radius: 8px;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-    }
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      color: #7f8c8d;
-      font-size: 0.9em;
-    }
-    @media (max-width: 600px) {
-      body { font-size: 16px; }
-      h1 { font-size: 1.8em; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growtainer — Mineralreicher Bio-Eigenanbau, einfach gemacht</title>
+<meta name="description" content="Open-Source-Pflanzsystem mit Anleitungen und Tipps. Selbstbewässernde, selbstdüngende Pflanzkübel mit maximaler Mineraldichte. Tomaten, Paprika, Gurken mit Geschmack und Gehalt.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f5efe3;
+    --bg-card: #fbf6ec;
+    --ink: #1c1812;
+    --ink-soft: #5a5147;
+    --rule: #d4c8b0;
+    --rule-soft: #e6dcc6;
+    --green: #4a6b3a;
+    --green-deep: #2f4524;
+    --water: #2c5e7a;
+    --brick: #a04830;
+    --gold: #b08a3c;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(74,107,58,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 85% 75%, rgba(160,72,48,0.03) 0%, transparent 50%);
+  }
+  ::selection { background: var(--gold); color: var(--bg); }
+  a { color: var(--water); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--brick); }
+  h1, h2, h3 {
+    font-family: 'Fraunces', 'Georgia', serif;
+    font-weight: 500; letter-spacing: -0.015em;
+    line-height: 1.1; margin: 0;
+    font-variation-settings: "SOFT" 50;
+  }
+  header.top {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(245,239,227,0.93);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar {
+    max-width: 1080px; margin: 0 auto; padding: 12px 20px;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .brand {
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px;
+    letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
+  }
+  .brand span { color: var(--green); }
+  nav.top-links { display: flex; gap: 20px; font-size: 13px; }
+  nav.top-links a { color: var(--ink-soft); text-decoration: none; }
+  nav.top-links a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav.top-links { display: none; } }
+  section { padding: 48px 20px; max-width: 1080px; margin: 0 auto; }
+  section + section { border-top: 1px solid var(--rule-soft); }
+  @media (min-width: 760px) { section { padding: 64px 28px; } }
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--ink-soft);
+    margin-bottom: 14px; display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ""; width: 22px; height: 1px; background: var(--ink-soft); }
+  h2 { font-size: clamp(24px, 4.5vw, 36px); margin-bottom: 16px; }
+  .hero {
+    padding-top: 36px; padding-bottom: 56px;
+    display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center;
+  }
+  @media (min-width: 880px) {
+    .hero { grid-template-columns: 1.1fr 1fr; gap: 48px; padding-top: 56px; padding-bottom: 80px; }
+  }
+  .hero-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    margin-bottom: 14px;
+  }
+  .hero h1 { font-size: clamp(30px, 7vw, 54px); margin-bottom: 20px; }
+  .hero h1 em { font-style: italic; color: var(--green); font-variation-settings: "SOFT" 100; }
+  .hero-lede { font-size: 17px; color: var(--ink-soft); max-width: 480px; margin-bottom: 28px; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; background: var(--ink); color: var(--bg);
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: background .15s;
+  }
+  .hero-cta:hover { background: var(--green-deep); color: var(--bg); }
+  .hero-cta-secondary { margin-left: 14px; font-size: 13px; color: var(--ink-soft); }
+  .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .hero-img {
+    background: var(--bg-card); border: 1px solid var(--rule);
+    padding: 12px; box-shadow: 4px 4px 0 var(--rule-soft);
+    display: flex; flex-direction: column;
+  }
+  .hero-img img { width: 100%; display: block; flex: 1; object-fit: cover; min-height: 0; }
+  .hero-img figcaption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 10px;
+  }
+  @media (max-width: 540px) { .hero-images { grid-template-columns: 1fr; } }
+  .values-intro { color: var(--ink-soft); margin-bottom: 32px; max-width: 640px; }
+  .values-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 720px) { .values-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
+  .value { border-top: 2px solid var(--ink); padding-top: 16px; }
+  .value:nth-child(1) { border-color: var(--water); }
+  .value:nth-child(2) { border-color: var(--green); }
+  .value:nth-child(3) { border-color: var(--brick); }
+  .value-num {
+    font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 6px;
+  }
+  .value h3 { font-size: 20px; margin-bottom: 10px; }
+  .value p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+  .calc-intro { color: var(--ink-soft); max-width: 640px; margin-bottom: 24px; }
+  .calc-wrap {
+    background: var(--bg-card); border: 1px solid var(--rule);
+    padding: 24px; box-shadow: 4px 4px 0 var(--rule-soft);
+  }
+  @media (min-width: 720px) { .calc-wrap { padding: 32px; } }
+  .calc-form { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (min-width: 600px) { .calc-form { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+  .calc-field { display: flex; flex-direction: column; gap: 5px; }
+  .calc-field label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--ink-soft);
+  }
+  .calc-field input, .calc-field select {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px; padding: 9px 12px;
+    border: 1px solid var(--rule); background: var(--bg); color: var(--ink);
+  }
+  .calc-field input:focus, .calc-field select:focus { outline: 2px solid var(--green); outline-offset: -1px; }
+  .calc-results { border-top: 1px solid var(--rule); padding-top: 22px; }
+  .calc-results h3 {
+    font-size: 12px; font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--ink-soft); font-weight: 500; margin-bottom: 14px;
+  }
+  .calc-table { width: 100%; border-collapse: collapse; }
+  .calc-table tr { border-bottom: 1px solid var(--rule-soft); }
+  .calc-table tr.section-row td {
+    background: rgba(74,107,58,0.05);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--green-deep);
+    padding: 8px 6px;
+  }
+  .calc-table td { padding: 10px 0; font-size: 14px; vertical-align: top; }
+  .calc-table td:first-child { font-weight: 500; padding-left: 6px; }
+  .calc-table td:nth-child(2) {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px; text-align: right;
+    color: var(--green-deep); white-space: nowrap; padding-right: 6px;
+  }
+  .calc-table td:nth-child(3) { color: var(--ink-soft); font-size: 12px; padding-left: 12px; padding-right: 6px; }
+  @media (max-width: 520px) { .calc-table td:nth-child(3) { display: none; } }
+  .calc-note {
+    margin-top: 16px; padding: 14px;
+    background: var(--bg); border-left: 3px solid var(--gold);
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .calc-note + .calc-note { margin-top: 8px; }
+  .calc-note.subtle { border-left-color: var(--rule); font-size: 12px; }
+  .calc-note.subtle sup { color: var(--brick); font-weight: 600; }
+  .roadmap-intro { color: var(--ink-soft); max-width: 640px; margin-bottom: 32px; }
+  .roadmap-list { list-style: none; padding: 0; margin: 0; }
+  .roadmap-list li {
+    display: grid; grid-template-columns: 1fr; gap: 4px;
+    padding: 16px 0; border-top: 1px solid var(--rule-soft);
+  }
+  .roadmap-list li:last-child { border-bottom: 1px solid var(--rule-soft); }
+  @media (min-width: 720px) {
+    .roadmap-list li { grid-template-columns: 100px 200px 1fr; gap: 20px; align-items: baseline; padding: 18px 0; }
+  }
+  .roadmap-list li.optional { background: rgba(74,107,58,0.03); padding-left: 12px; padding-right: 12px; }
+  .roadmap-step {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    color: var(--green-deep); letter-spacing: 0.05em;
+  }
+  .roadmap-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; }
+  .roadmap-detail { color: var(--ink-soft); font-size: 14px; }
+  .why-intro { color: var(--ink-soft); max-width: 680px; margin-bottom: 28px; }
+  .why-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  @media (min-width: 760px) { .why-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
+  .why-block h3 { font-size: 18px; margin-bottom: 10px; color: var(--green-deep); }
+  .why-block p { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 12px; }
+  .why-block .src {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: var(--ink-soft);
+    margin-top: 10px; opacity: 0.8;
+  }
+  .bg-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+  @media (min-width: 600px) { .bg-grid { grid-template-columns: repeat(2, 1fr); gap: 8px 36px; } }
+  .bg-item { padding: 14px 0; border-top: 1px solid var(--rule-soft); }
+  .bg-item-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--ink-soft); margin-bottom: 3px;
+  }
+  .bg-item a {
+    font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500;
+    text-decoration: none; color: var(--ink); border-bottom: 1px solid var(--rule);
+  }
+  .bg-item a:hover { border-color: var(--green); color: var(--green-deep); }
+  .bg-item-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
+  footer {
+    margin-top: 40px; border-top: 1px solid var(--rule);
+    padding: 28px 20px 40px; max-width: 1080px;
+    margin-left: auto; margin-right: auto;
+    display: flex; justify-content: space-between; gap: 16px;
+    font-size: 12px; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  footer .credit { font-family: 'Fraunces', serif; font-style: italic; }
+  footer a { color: var(--ink-soft); }
+  @media print { body { background: white; } header.top, .calc-wrap { background: white; } }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>🌱 Project Growtainer</h1>
-    <p class="tagline">Self-Irrigating. Nutrient-Dense. Open-Source.</p>
-  </header>
-
-  <div class="hero">
-    <h2>Grow Fresh, Healthy Food — Anywhere</h2>
-    <p>A journey toward decentralized, healthy food for all. Build your own self-watering, self-fertilizing planter using simple materials and smart soil science.</p>
-    <a href="docs/diy-guide.md" class="cta">🔧 Start Building (DIY Guide)</a>
+<header class="top">
+  <div class="topbar">
+    <a href="#top" class="brand">growtainer<span>.</span>org</a>
+    <nav class="top-links">
+      <a href="#prinzip">Prinzip</a>
+      <a href="#rechner">Rechner</a>
+      <a href="#fahrplan">Fahrplan</a>
+      <a href="#warum">Warum</a>
+      <a href="https://github.com/growtainer" target="_blank" rel="noopener">GitHub</a>
+    </nav>
   </div>
+</header>
 
-  <div class="section">
-    <h2>Why Growtainer?</h2>
-    <p>Most self-watering planters only solve watering. <strong>Growtainer solves nutrition</strong>.</p>
-    <ul>
-      <li>✅ <strong>Volcanic rock dust</strong> for trace minerals (Zn, Se, Mn)</li>
-      <li>✅ <strong>Worm castings</strong> for living soil biology</li>
-      <li>✅ <strong>Dolomite layer</strong> for calcium & magnesium</li>
-      <li>✅ <strong>Self-dosing nutrients</strong> — plant can constantly take what it needs to grow at full capacity</li>
-      <li>✅ <strong>Open-source & free</strong> — no lock-in, full adaptability</li>
-    </ul>
-    <p><em>We don’t just grow food. We grow health, resilience, and autonomy.</em></p>
-  </div>
+<a id="top"></a>
 
-  <div class="section">
-    <h2>Get Started</h2>
-    <p>All plans, science, and guides are <strong>100% free</strong> under <a href="LICENSE.md">CC-BY-SA 4.0</a>.</p>
-    <ul>
-      <li>📘 <a href="docs/principle.md">How It Works</a></li>
-      <li>🔧 <a href="docs/diy-guide.md">Build Your Own (Two-Bucket Method)</a></li>
-      <li>🧪 <a href="docs/substrate.md">Soil Mix: How to mix and layer the substrate elements</a></li>
-      <li>🖨️ <a href="docs/rost-designs/">3D-Printed Rost (STL Files)</a></li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>Join the Movement</h2>
-    <p>Whether you're a gardener, educator, maker, or changemaker:</p>
-    <ul>
-      <li>✅ <strong>Build</strong> your own Growtainer</li>
-      <li>✅ <strong>Improve</strong> the design and share it back</li>
-      <li>✅ <strong>Teach</strong> others in your community</li>
-      <li>✅ <strong>Support</strong> the project through collaboration</li>
-    </ul>
-    <p>🌱 Let’s grow healthy food — and a healthier future — together.</p>
-    <a href="https://github.com/growtainer" class="cta">🐙 Explore on GitHub</a>
-  </div>
-
-  <footer>
-    <p>© <script>document.write(new Date().getFullYear())</script> Project Growtainer | 
-       <a href="LICENSE.md">CC-BY-SA 4.0</a> | 
-       <a href="mailto:mail@growtainer.org">Contact</a>
+<section class="hero">
+  <div>
+    <div class="hero-meta">Open-Source Pflanzsystem · Anleitungen und Tipps</div>
+    <h1>Mineralreicher Bio-Eigenanbau —&nbsp;<em>einfach gemacht</em>.</h1>
+    <p class="hero-lede">
+      Selbstbewässernde &amp; selbstdüngende Pflanzkübel mit maximaler Mineraldichte.
+      Gemüse mit Geschmack und Gehalt, die so kein Supermarkt mehr liefern kann.
     </p>
-    <p><small>Built with care. Hosted on GitHub Pages.</small></p>
-  </footer>
+    <a href="#rechner" class="hero-cta">Substrat-Rechner →</a>
+    <a href="#fahrplan" class="hero-cta-secondary">Eigenbau-Fahrplan</a>
+  </div>
+  <div class="hero-images">
+    <figure class="hero-img">
+      <img src="assets/images/growtainer_principle.jpg"
+           alt="Querschnitt-Skizze des Growtainer-Prinzips: Wasserreservoir unten, Erdrost, Substrat mit Dolomit und Urgesteinsmehl, Düngerbänder oben unter Folie."
+           loading="eager">
+      <figcaption>Querschnitt-Prinzip · Skizze</figcaption>
+    </figure>
+    <figure class="hero-img">
+      <img src="assets/images/paprika_growtainer.jpg"
+           alt="Üppige Paprikapflanze mit grünen und orangefarbenen Früchten, gewachsen in einem Growtainer-Eimer."
+           loading="eager">
+      <figcaption>Paprika-Ernte · September</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="prinzip">
+  <div class="section-label">01 / Was der Growtainer leistet</div>
+  <h2>Drei Vorteile in einem genial einfachen System.</h2>
+  <p class="values-intro">
+    Klassischer Anbau in Beet oder Töpfen wäscht Dünger und Mineralien mit Gießwasser und Regen aus: Wertverlust, Umweltproblem — und dennoch brauchen die Methoden viel Aufmerksamkeit und Pflege. Das Growtainer-Prinzip ändert das, überall wo es genug Licht für Pflanzen gibt.
+  </p>
+  <div class="values-grid">
+    <div class="value">
+      <div class="value-num">01</div>
+      <h3>Selbstbewässernd</h3>
+      <p>Das Wasserreservoir versorgt die Pflanze mehrere Tage mit genau der Wassermenge, die sie zu jeder Tageszeit braucht. Kein manuelles Optimieren zwischen Staunässe und zu trocken.</p>
+    </div>
+    <div class="value">
+      <div class="value-num">02</div>
+      <h3>Selbstdüngend</h3>
+      <p>Volldünger als solider Streifen oben, gibt Nahrung gleichmäßig über die ganze Saison ab. Pionier-Wurzeln holen sich passgenau. Kein Auswaschen, kein Versickern, kein Verbrennen der Pflanze.</p>
+    </div>
+    <div class="value">
+      <div class="value-num">03</div>
+      <h3>Maximale Mineralverfügbarkeit</h3>
+      <p>Urgesteinsmehl für Spurenelemente, Dolomit für Calcium-Magnesium in optimaler Kombination. Wurmhumus und Kompost für Bodenleben und als Aufnahmehelfer der Mineralien.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rechner">
+  <div class="section-label">02 / Substrat-Rechner</div>
+  <h2>Was kommt rein, in welcher Menge.</h2>
+  <p class="calc-intro">
+    Einfach Eimer-Volumen und Anzahl eintragen und Zutatenmengen berechnen lassen. Für einen einfachen Schnellstart: kommerzielle Bio-Gemüseerde auswählen und sehen, wie sie auf Growtainer-Standard aufgewertet werden kann. Profi-Mischer wählen Vollvariante&nbsp;A oder B aus Protokoll&nbsp;3.
+  </p>
+  <div class="calc-wrap">
+    <div class="calc-form">
+      <div class="calc-field">
+        <label for="bucketVol">Eimer-Volumen (Liter)</label>
+        <input type="number" id="bucketVol" value="20" min="5" max="80" step="1">
+      </div>
+      <div class="calc-field">
+        <label for="bucketCount">Anzahl Eimer</label>
+        <input type="number" id="bucketCount" value="1" min="1" max="20" step="1">
+      </div>
+      <div class="calc-field">
+        <label for="variant">Substrat-Variante</label>
+        <select id="variant">
+          <option value="quickstart">Quickstart (Bio-Gemüseerde + Booster)</option>
+          <option value="A">Vollvariante A — Kokosfaser-Basis (P3)</option>
+          <option value="B">Vollvariante B — CRH-aufgewertet (P3)</option>
+        </select>
+      </div>
+      <div class="calc-field" id="baseSubstrateField">
+        <label for="baseSubstrate">Markt-Substrat</label>
+        <select id="baseSubstrate">
+          <option value="compo">Compo Bio Tomaten- und Gemüseerde</option>
+          <option value="floragard">Floragard Bio Aktiv-Erde</option>
+          <option value="vulkaterra">Vulkaterra Gemüsesubstrat</option>
+          <option value="generic">Andere torfreduzierte Bio-Gemüseerde</option>
+        </select>
+      </div>
+      <div class="calc-field">
+        <label for="fertilizer">Bio-Dünger (granular)</label>
+        <select id="fertilizer">
+          <option value="azet">Neudorff Azet TomatenDünger (NPK 7-3-10)</option>
+          <option value="plantura">Plantura Bio-Tomatendünger (NPK 4-3-8)</option>
+          <option value="profi">GemüseProfi Bio Profi-Tomatendünger (NPK 6-5-12)</option>
+          <option value="compo">Compo Bio NaturDünger Guano (NPK 7-4-5)*</option>
+          <option value="generic">Anderer Bio-Tomaten-/Gemüsedünger</option>
+        </select>
+      </div>
+    </div>
+    <div class="calc-results">
+      <h3>Einkaufsliste</h3>
+      <table class="calc-table" id="resultTable"></table>
+      <div class="calc-note" id="varNote"></div>
+      <div class="calc-note subtle" id="fertNote"></div>
+    </div>
+  </div>
+</section>
+
+<section id="fahrplan">
+  <div class="section-label">03 / Fahrplan</div>
+  <h2>Vom Gartenschuppen oder Baumarkt zur Pflanzung.</h2>
+  <p class="roadmap-intro">
+    Im einfachsten Fall mit ein wenig Geschick: ein einziger Tag. Realistisch: paar Tage Vorlauf fürs Auftreiben von Lebensmitteleimern oder den 3D-Druck der Erdroste, sonst alles vom Baumarkt direkt.
+  </p>
+  <ol class="roadmap-list">
+    <li>
+      <span class="roadmap-step">Schritt 1</span>
+      <span class="roadmap-title">Eimer und Komponenten</span>
+      <span class="roadmap-detail">
+        Zwei stabile Lebensmittel-Eimer (15–20 L), Substrat-Komponenten nach Rechner. Zutaten (Basalt, Dolomit, Wurmhumus) im Garten-Fachhandel oder Bio-Versand.
+      </span>
+    </li>
+    <li class="optional">
+      <span class="roadmap-step">Schritt 1.1<br><span style="opacity:0.7;font-weight:400;font-size:11px">optional</span></span>
+      <span class="roadmap-title">Erdrost drucken</span>
+      <span class="roadmap-detail">
+        STL aus dem Repo, ggf. selbst auf Eimerdurchmesser skalieren. Spart einen zweiten Eimer oder Eigenbau-Handwerk. Eigener 3D-Drucker (PETG, ~3 € Material) oder Online-Druck-Service (Hubs, Burms Berlin, Zelta3D — ~25–40 €, 5–10 Werktage).
+      </span>
+    </li>
+    <li>
+      <span class="roadmap-step">Schritt 2</span>
+      <span class="roadmap-title">Substrat schichten und befüllen</span>
+      <span class="roadmap-detail">
+        Erdrost und Befüllrohr einsetzen, Überlauflöcher bohren, Substrat einfüllen. Dolomit in die obersten 5–8&nbsp;cm einarbeiten. Düngerstreifen aufbringen, mit Folie abdecken — <strong>Dünger nicht ins Substrat einmischen</strong>.
+      </span>
+    </li>
+    <li>
+      <span class="roadmap-step">Schritt 3</span>
+      <span class="roadmap-title">Reservoir füllen, Pflanze rein</span>
+      <span class="roadmap-detail">
+        Wasser durch das Gießrohr bis Überlauf. Folie an der Pflanzstelle kreuzweise einschneiden. Tomate, Paprika oder Gurke aus dem Bio-Gartencenter — robuster als selbstgezogene Sämlinge im ersten Jahr.
+      </span>
+    </li>
+  </ol>
+</section>
+
+<section id="warum">
+  <div class="section-label">04 / Warum „growtainern" sich mehrfach lohnt</div>
+  <h2>Mehr als nur Gemüse.</h2>
+  <p class="why-intro">
+    Der Growtainer löst mehrere Probleme parallel: das Vitalstoffdefizit der industriellen Lebensmittel, das Platzproblem herkömmlicher Anbaumethoden, die Einstiegshürde ohne Gartenerfahrung (selbstregulierend) und das psychische Defizit durch fehlenden Pflanzenkontakt im Alltag. Zudem schmeckt die frische Ernte unschlagbar gut.
+  </p>
+  <div class="why-grid">
+    <div class="why-block">
+      <h3>Mineralien fehlen — systematisch</h3>
+      <p>
+        Lebensmittel-Studien zeigen permanente Rückgänge der Nährstoffdichte. Hauptursachen: Hochertragssorten, ausgelaugte Böden, Kalk und Agrochemikalien wie Glyphosat, die Spurenelemente wie das Stimmungsmineral Mangan verdrängen und fest binden.
+      </p>
+      <p>
+        Selbst Bio-Gemüse aus erschöpften Böden liefert oft nicht das, was die Tabelle verspricht.
+      </p>
+      <p class="src">Mayer 2022 · Davis 2009 · NVS&nbsp;II</p>
+    </div>
+    <div class="why-block">
+      <h3>Pflanzenkontakt wirkt messbar heilsam</h3>
+      <p>
+        Regelmäßiger Pflanzenkontakt senkt Stresshormone und Blutdruck, reduziert depressive Symptome und Angst-Marker — bei mildem bis mittelgradigem Stress oft stärker als Medikamente.
+      </p>
+      <p>
+        Pflanzen geben zusätzlich sog. Phytonzide ab — flüchtige organische Verbindungen, die unsere Immunaktivität für mehrere Tage erhöhen. Der Growtainer hat hier dreifachen Wert: Pflanze, Mineralreserve und frische, gesunde Zutaten für eine heilsame Ernährung in einem.
+      </p>
+      <p class="src">Soga, Gaston &amp; Yamaura 2017 · Li 2010 (Forst-Bademedizin)</p>
+    </div>
+  </div>
+</section>
+
+<section id="hintergrund">
+  <div class="section-label">05 / Hintergrund</div>
+  <h2>Material und Kontakt.</h2>
+  <div class="bg-grid">
+    <div class="bg-item">
+      <div class="bg-item-label">3D-Druckdaten STL · Dokumentation</div>
+      <a href="https://github.com/growtainer" target="_blank" rel="noopener">github.com/growtainer</a>
+      <div class="bg-item-note">DIY-Anleitung, 3D-Druck-Dateien, Substrat-Rezepte. CC-BY-SA 4.0.</div>
+    </div>
+    <div class="bg-item">
+      <div class="bg-item-label">Gesundheitliche Grundlagen · Praxisprotokoll</div>
+      <a href="https://www.dropbox.com/scl/fi/ygs2a4gu77epndvwu9dvp/sk_mineralien_protokoll.pdf?rlkey=2fz45aro3x9w3eq7z88y4dqxq&dl=0" target="_blank" rel="noopener">Schlüssel-Mineralien für die Regeneration (PDF)</a>
+      <div class="bg-item-note">26 Seiten. Kompaktere Veröffentlichungen folgen.</div>
+    </div>
+    <div class="bg-item">
+      <div class="bg-item-label">Video-Archiv</div>
+      <a href="https://www.youtube.com/@growtainer" target="_blank" rel="noopener">youtube.com/@growtainer</a>
+      <div class="bg-item-note">Die ersten Growtainer-Videos aus Berlin von 2010.</div>
+    </div>
+    <div class="bg-item">
+      <div class="bg-item-label">Alte DIY-Bauanleitung</div>
+      <a href="https://de.slideshare.net/slideshow/diy-growtainer/1459523" target="_blank" rel="noopener">SlideShare 2009</a>
+      <div class="bg-item-note">Original-Anleitung, Vintage. Wird ins Repo überführt.</div>
+    </div>
+    <div class="bg-item">
+      <div class="bg-item-label">Community</div>
+      <a href="https://www.facebook.com/profile.php?id=100064641941504" target="_blank" rel="noopener">Facebook-Seite</a>
+      <div class="bg-item-note">Kanäle für den Erfahrungsaustausch werden ausgebaut.</div>
+    </div>
+    <div class="bg-item">
+      <div class="bg-item-label">Newsletter des Gründers</div>
+      <a href="https://mailchi.mp/stefankutter/newsletter-eintragen" target="_blank" rel="noopener">Praxisprotokolle abonnieren</a>
+      <div class="bg-item-note">P1 Stoffwechsel · P2 Neuro-Emotional · P3 Mineralien — kostenlos.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="credit">Stefan Kutter · Open Source · CC-BY-SA 4.0</div>
+  <div>
+    <a href="mailto:mail@growtainer.org">mail@growtainer.org</a> ·
+    <a href="https://github.com/growtainer" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="#top">↑ nach oben</a>
+  </div>
+</footer>
+
+<script>
+const SUBSTRATE_FRACTION = 0.80;
+const BASALT_G_PER_L = 40;
+const DOLOMIT_G_PER_L = 27;
+const TASSE_G = 400;
+const TASSE_FERT_G = 175;
+
+const RECIPES = {
+  quickstart: {
+    compo:      { 'Compo Bio Tomaten- und Gemüseerde': 0.70, 'Kokosfaser (vorgewaschen)': 0.15, 'Wurmhumus': 0.15 },
+    floragard:  { 'Floragard Bio Aktiv-Erde': 0.65, 'Kokosfaser (vorgewaschen)': 0.20, 'Wurmhumus': 0.15 },
+    vulkaterra: { 'Vulkaterra Gemüsesubstrat': 0.80, 'Wurmhumus': 0.20 },
+    generic:    { 'Bio-Gemüseerde (torfreduziert)': 0.70, 'Kokosfaser (vorgewaschen)': 0.15, 'Wurmhumus': 0.15 }
+  },
+  A: {
+    'Kokosfaser (vorgewaschen)': 0.50,
+    'Perlit (mittlere Körnung)': 0.30,
+    'Wurmhumus': 0.15,
+    'Reifekompost (gesiebt, ≥12 Monate)': 0.05
+  },
+  B: {
+    'Kokosfaser (vorgewaschen)': 0.45,
+    'Perlit oder Bimsstein': 0.15,
+    'CRH (carbonisierte Reisspelzen)': 0.20,
+    'Wurmhumus': 0.15,
+    'Reifekompost (gesiebt, ≥12 Monate)': 0.05
+  }
+};
+
+const NOTES = {
+  quickstart: 'Quickstart-Pfad: kommerzielles Bio-Substrat als Träger plus Mineral-Booster. Robust gegen Mischfehler — empfohlen für die erste Saison.',
+  A: 'Vollvariante A aus P3. Alle Komponenten gut verfügbar. Perlit nicht zu fein, kein Staub.',
+  B: 'Vollvariante B mit CRH (carbonisierte Reisspelzen) — höhere Kationen-Austausch-Kapazität, Si-Zugabe gegen Aluminium-Last. Empfohlen wenn CRH verfügbar.'
+};
+
+const FERTILIZERS = {
+  azet:     { name: 'Neudorff Azet TomatenDünger',         npk: '7-3-10',          g_per_L: 9,  flag: false },
+  plantura: { name: 'Plantura Bio-Tomatendünger',          npk: '4-3-8',           g_per_L: 12, flag: false },
+  profi:    { name: 'GemüseProfi Bio Profi-Tomatendünger', npk: '6-5-12',          g_per_L: 10, flag: false },
+  compo:    { name: 'Compo Bio NaturDünger Guano',         npk: '7-4-5',           g_per_L: 11, flag: true  },
+  generic:  { name: 'Bio-Tomaten-/Gemüsedünger',           npk: '~6-3-10 typisch', g_per_L: 10, flag: false }
+};
+
+function fmtVolume(l) { if (l < 1) return `${(l*1000).toFixed(0)} ml`; if (l < 10) return `${l.toFixed(1)} L`; return `${l.toFixed(0)} L`; }
+function fmtMass(g) { return g < 1000 ? `${g.toFixed(0)} g` : `${(g/1000).toFixed(1)} kg`; }
+function tassen(g, perTasse) {
+  const t = g / perTasse;
+  if (t < 0.85) return '~¾ Tasse';
+  if (t < 1.25) return '~1 Tasse';
+  if (t < 1.75) return '~1½ Tassen';
+  if (t < 2.5)  return '~2 Tassen';
+  return `~${Math.round(t)} Tassen`;
+}
+
+function recalc() {
+  const vol = parseFloat(document.getElementById('bucketVol').value) || 0;
+  const count = parseInt(document.getElementById('bucketCount').value) || 0;
+  const variant = document.getElementById('variant').value;
+  const base = document.getElementById('baseSubstrate').value;
+  const fertKey = document.getElementById('fertilizer').value;
+
+  const substrateVol = vol * count * SUBSTRATE_FRACTION;
+  const recipe = variant === 'quickstart' ? RECIPES.quickstart[base] : RECIPES[variant];
+
+  document.getElementById('baseSubstrateField').style.display =
+    variant === 'quickstart' ? '' : 'none';
+
+  const rows = [];
+  rows.push(`<tr class="section-row"><td colspan="3">Substrat-Komponenten</td></tr>`);
+  for (const [name, frac] of Object.entries(recipe)) {
+    const liters = substrateVol * frac;
+    rows.push(`<tr><td>${name}</td><td>${fmtVolume(liters)}</td><td>${(frac*100).toFixed(0)} % des Substrats</td></tr>`);
+  }
+  rows.push(`<tr class="section-row"><td colspan="3">Mineral-Booster (immer dabei)</td></tr>`);
+  const basaltG = substrateVol * BASALT_G_PER_L;
+  const dolomitG = substrateVol * DOLOMIT_G_PER_L;
+  rows.push(`<tr><td>Basalt-Urgesteinsmehl</td><td>${fmtMass(basaltG)} (${tassen(basaltG, TASSE_G)})</td><td>gleichmäßig untermischen</td></tr>`);
+  rows.push(`<tr><td>Dolomit-Gesteinsmehl</td><td>${fmtMass(dolomitG)} (${tassen(dolomitG, TASSE_G)})</td><td>oberste 5–8 cm einarbeiten</td></tr>`);
+
+  const fert = FERTILIZERS[fertKey];
+  const fertG = substrateVol * fert.g_per_L;
+  const flagMark = fert.flag ? '*' : '';
+  rows.push(`<tr class="section-row"><td colspan="3">Bio-Volldünger (Streifen oben, NICHT einmischen)</td></tr>`);
+  rows.push(`<tr><td>${fert.name}${flagMark} <span style="color:var(--ink-soft);font-weight:400;font-size:12px">· NPK ${fert.npk}</span></td><td>${fmtMass(fertG)} (${tassen(fertG, TASSE_FERT_G)})</td><td>als Streifen, mit Folie abdecken</td></tr>`);
+
+  document.getElementById('resultTable').innerHTML = rows.join('');
+  document.getElementById('varNote').textContent =
+    `${NOTES[variant]} Reservoir-Volumen ist die untersten ~${Math.round(vol*0.20)} L pro Eimer und bleibt frei.`;
+
+  let fertNoteHTML = '';
+  if (fert.flag) {
+    fertNoteHTML = `<sup>*</sup> ÖkoTest 2013 wertete diesen Dünger wegen erhöhter Schwermetallwerte (Cd, U, As) ab. Aktuelle Daten beim Hersteller offen — Saison 2026 ist eine unabhängige Schadstoff- und Düngerwirkungs-Recherche geplant, einschließlich DIY-Eigenproduktion und gezielter P-Booster für die Fruchtphase. Inspiration: Solomon „Gardening When It Counts", angepasst an mitteleuropäische Schimmelbedingungen.`;
+  } else {
+    fertNoteHTML = `<sup>*</sup> Saison 2026 ist eine unabhängige Schadstoff- und Düngerwirkungs-Recherche geplant, einschließlich DIY-Eigenproduktion und gezielter P-Booster für die Fruchtphase. Inspiration: Solomon „Gardening When It Counts", angepasst an mitteleuropäische Schimmelbedingungen.`;
+  }
+  document.getElementById('fertNote').innerHTML = fertNoteHTML;
+}
+
+['bucketVol','bucketCount','variant','baseSubstrate','fertilizer'].forEach(id =>
+  document.getElementById(id).addEventListener('input', recalc)
+);
+recalc();
+</script>
 
 </body>
 </html>
