@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D-Druck-Vorlagen — Growtainer</title>
+<meta name="description" content="STL-Dateien, Druck-Anleitungen und Videos für den Growtainer-Erdrost. Empfohlene Inlay-Variante und experimentelle Honeycomb-Variante mit höherer Wasserkapazität.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="topbar">
+    <a href="index.html" class="brand">growtainer<span>.</span>org</a>
+    <nav class="top-links">
+      <a href="diy.html">DIY-Bauanleitung</a>
+      <a href="substrat.html">Substrat</a>
+      <a href="3d-druck.html" class="active">3D-Druck</a>
+      <a href="microgreens.html">Microgreens</a>
+      <a href="https://github.com/growtainer" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<section class="subhero">
+  <div class="breadcrumb"><a href="index.html">Start</a><span>/</span>3D-Druck</div>
+  <div class="section-label">3D-Druck-Vorlagen</div>
+  <h1>Erdrost als&nbsp;<em>3D-Druck-Einsatz</em>.</h1>
+  <p class="lede">
+    Zwei Designs zum selbst Drucken oder online drucken lassen. Beide passen in handelsübliche 15–20-Liter-Lebensmitteleimer. Open Source unter CC-BY-SA — eigene Designs willkommen.
+  </p>
+</section>
+
+<section>
+  <div class="section-label">01 / Empfohlene Variante</div>
+  <h2>Inlay — robust und materialsparend.</h2>
+
+  <div class="card featured">
+    <div class="card-meta">growtainer_inlay.stl · empfohlen für die erste Saison</div>
+    <h3>Stabile Lochrost-Variante mit drei Standfüßen</h3>
+    <p>
+      Flacher perforierter Rost mit drei nach unten ragenden konischen Standfüßen. Die Füße stehen direkt auf dem Eimerboden und tragen den Rost so, dass darunter ein Wasserreservoir entsteht. Der Rost selbst ist überraschend stabil — kein Stütz-Infill nötig, druckt günstig und schnell.
+    </p>
+
+    <div class="three-col" style="margin: 20px 0;">
+      <div>
+        <div class="card-meta">Maße</div>
+        <p class="mono">Außen-Ø 280 mm · Höhe 53 mm</p>
+      </div>
+      <div>
+        <div class="card-meta">Material</div>
+        <p class="mono">~195 cm³ (~245 g PETG)</p>
+      </div>
+      <div>
+        <div class="card-meta">Wasserkapazität*</div>
+        <p class="mono">~2,4 L im 20-L-Eimer</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 16px;">
+      <a href="stl/growtainer_inlay.stl" class="cta" download>STL herunterladen →</a>
+      <a href="#druck-settings" class="cta-secondary">Druck-Settings</a>
+    </p>
+  </div>
+
+  <h4>So sieht der Inlay-Einsatz im 20-L-Eimer aus</h4>
+  <div class="video-wrap video-vertical">
+    <iframe
+      src="https://www.youtube.com/embed/yFcdfRr4bes"
+      title="Growtainer Inlay im 20-Liter-Eimer"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+  <p class="muted" style="font-size: 13px; text-align: center;">Inlay sitzt locker im Eimer. Bei zu großem Spalt zur Eimerwand: STL leicht hochskalieren (siehe unten).</p>
+</section>
+
+<section>
+  <div class="section-label">02 / Experimentelle Variante</div>
+  <h2>Honeycomb — mehr Wasser, weniger Stabilität.</h2>
+
+  <div class="card warning">
+    <div class="card-meta">growtainer_honeycomb.stl · experimentell</div>
+    <h3>Wabenstruktur mit höherer Reservoir-Kapazität</h3>
+    <p>
+      Höhere Variante (72&nbsp;mm) mit Wabenstruktur als Trägermatrix. Vorteil: deutlich mehr Wasservorrat — etwa 50&nbsp;% mehr Reichweite zwischen Nachfüllen. Nachteil: die Wabenstruktur ist filigraner, biegt sich unter schwerem Substrat leicht durch.
+    </p>
+
+    <div class="three-col" style="margin: 20px 0;">
+      <div>
+        <div class="card-meta">Maße</div>
+        <p class="mono">Außen-Ø 280 mm · Höhe 72 mm</p>
+      </div>
+      <div>
+        <div class="card-meta">Material</div>
+        <p class="mono">~90 cm³ (~115 g PETG)</p>
+      </div>
+      <div>
+        <div class="card-meta">Wasserkapazität*</div>
+        <p class="mono">~3,5 L im 20-L-Eimer</p>
+      </div>
+    </div>
+
+    <div class="inline-warn" style="margin-top: 16px;">
+      <strong>Stabilitäts-Hinweis:</strong> Die aktuelle v1.5 braucht einen zusätzlichen Verstärkungs-Rost obenauf, oder höheres Druck-Infill (50&nbsp;%+) für volle Substrat-Last. Eine Re-Design-Iteration ist offen — Designs willkommen, gerne als Pull Request oder Issue im Repo.
+    </div>
+
+    <p style="margin-top: 16px;">
+      <a href="stl/growtainer_honeycomb.stl" class="cta-secondary" download>STL herunterladen →</a>
+    </p>
+  </div>
+
+  <h4>So sieht die Honeycomb-Variante im 20-L-Eimer aus</h4>
+  <div class="video-wrap video-vertical">
+    <iframe
+      src="https://www.youtube.com/embed/8_UQEpeS-iU"
+      title="Growtainer Honeycomb im 20-Liter-Eimer"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+</section>
+
+<section id="druck-settings">
+  <div class="section-label">03 / Druck-Einstellungen</div>
+  <h2>Wie drucken — empfohlene Settings.</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Inlay (empfohlen)</th>
+        <th>Honeycomb (experimentell)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Material</td><td>PETG</td><td>PETG</td></tr>
+      <tr><td>Layer-Höhe</td><td class="num">0,2 mm</td><td class="num">0,2 mm</td></tr>
+      <tr><td>Infill</td><td class="num">15–20 %</td><td class="num">50 %+</td></tr>
+      <tr><td>Wandstärke</td><td class="num">3 Linien</td><td class="num">3 Linien</td></tr>
+      <tr><td>Stützstrukturen</td><td>nur unter den Standfüßen</td><td>nur unter Wabenkrone</td></tr>
+      <tr><td>Druckdauer (~)</td><td class="num">8–10 h</td><td class="num">5–6 h</td></tr>
+      <tr><td>Materialkosten (~)</td><td class="num">3–4 €</td><td class="num">2–3 €</td></tr>
+    </tbody>
+  </table>
+
+  <div class="inline-tip">
+    <strong>Material-Wahl:</strong> PETG empfohlen wegen UV-Stabilität, Wasserfestigkeit und Lebensmittelechtheit (bei Standard-Filament). PLA funktioniert auch, wird aber bei dauerhafter Sonne und Feuchte über 1–2 Saisons spröde. ABS möglich, riecht aber beim Druck stark — zu Hause weniger angenehm.
+  </div>
+</section>
+
+<section>
+  <div class="section-label">04 / Drucken lassen</div>
+  <h2>Online-Druckservice — wenn kein eigener Drucker da ist.</h2>
+
+  <p>
+    Drei Anbieter, die in Deutschland verlässlich liefern und alle einen <strong>Sofort-Quote per STL-Upload</strong> bieten — keine E-Mail-Korrespondenz, kein Warten auf manuelle Angebote.
+  </p>
+
+  <div class="three-col">
+    <div class="card featured">
+      <div class="card-meta">Empfohlen — günstigste Marketplace-Quote</div>
+      <h4><a href="https://craftcloud3d.com/" target="_blank" rel="noopener">Craftcloud</a></h4>
+      <p class="muted" style="font-size: 14px;">Globaler Marketplace mit lokalen Druckereien in Deutschland. STL hochladen, Material wählen, Anbieter aussuchen, Sofort-Quote. Bezahlte Erfahrung: unter 20&nbsp;€ pro Stück plus Versand.</p>
+      <p class="mono" style="font-size: 12px;">~15–20 € pro Stück · Versand 5–10 Werktage</p>
+    </div>
+    <div class="card">
+      <div class="card-meta">Marketplace-Alternative</div>
+      <h4><a href="https://www.hubs.com/" target="_blank" rel="noopener">Hubs (Protolabs Network)</a></h4>
+      <p class="muted" style="font-size: 14px;">Großer internationaler Marketplace mit Sofort-Quote, viele Materialoptionen.</p>
+      <p class="mono" style="font-size: 12px;">~20–35 € pro Stück · 5–10 Werktage</p>
+    </div>
+    <div class="card">
+      <div class="card-meta">Online-Service Deutschland</div>
+      <h4><a href="https://zelta3d.de/" target="_blank" rel="noopener">Zelta3D Germany</a></h4>
+      <p class="muted" style="font-size: 14px;">Deutscher Online-Service mit guter Materialauswahl und Sofort-Quote.</p>
+      <p class="mono" style="font-size: 12px;">~25–35 € pro Stück · 5–8 Werktage</p>
+    </div>
+  </div>
+
+  <p class="muted" style="font-size: 14px; margin-top: 20px;">
+    Auswahl bei der Bestellung: PETG, Layer 0,2&nbsp;mm, Standard-Infill (~20&nbsp;%) für die Inlay-Variante. Die Anbieter wählen automatisch passende Stützstrukturen.
+  </p>
+</section>
+
+<section>
+  <div class="section-label">05 / Sammelbestellung Spritzguss</div>
+  <h2>Wenn genug Bedarf — gemeinsam preiswert produzieren.</h2>
+
+  <p>
+    Bei einer kollektiven Bestellung von etwa <strong>1.000 Einheiten</strong> wird Spritzguss in Lebensmittel-Polypropylen (PP) attraktiv — mit deutlich besserer Stabilität, schnellerer Verfügbarkeit und geringerem Material-Footprint als 3D-Druck.
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Auflage</th>
+        <th>Werkzeug-Kosten</th>
+        <th>Stückkosten Material+Produktion</th>
+        <th>Gesamt pro Stück (~)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 (3D-Druck)</td><td class="num">—</td><td class="num">—</td><td class="num">~15–20 €</td></tr>
+      <tr><td>1.000 Stück</td><td class="num">5.000–10.000 €</td><td class="num">~1,30 €</td><td class="num">~8–12 €</td></tr>
+      <tr><td>5.000+ Stück</td><td class="num">amortisiert</td><td class="num">~1,30 €</td><td class="num">~3–4 €</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Die Schätzung basiert auf: Aluminium-Spritzguss-Werkzeug für mittlere Stückzahlen, PP food-grade (1,50–2,00&nbsp;€/kg), ~250&nbsp;g pro Stück.
+  </p>
+
+  <div class="inline-tip">
+    <strong>Interesse signalisieren:</strong> Wenn du bei einer möglichen Sammelbestellung dabei wärst, melde dich per E-Mail an <a href="mailto:mail@growtainer.org?subject=Sammelbestellung%20Spritzguss">mail@growtainer.org</a> mit gewünschter Stückzahl. Sobald genug Interesse zusammenkommt, wird ein konkretes Angebot ausgehandelt und transparent über den Newsletter und das Repo kommuniziert.
+  </div>
+</section>
+
+<section>
+  <div class="section-label">06 / An den eigenen Eimer anpassen</div>
+  <h2>Wann skalieren nötig ist.</h2>
+
+  <p>
+    Die Standard-STLs haben einen <strong>Außendurchmesser von 28&nbsp;cm (280&nbsp;mm)</strong>. Vor dem Drucken den <strong>Innendurchmesser des Pflanzgefäßes</strong> auf der Höhe messen, auf der später der Erdrost liegt — das ist die Höhe des Inlay-Modells (siehe Tabelle), bzw. die selbst gewählte Höhe, falls die Wasserkapazität durch Skalierung verändert wird.
+  </p>
+
+  <div class="inline-tip">
+    <strong>Toleranz:</strong> Bis zu ±3&nbsp;mm Spalt zur Eimerwand sind unproblematisch — der Rost sitzt locker auf den Standfüßen, das Wasser fließt durch den Spalt sauber an den Rand und über die Überlauf-Bohrungen ab. Erst bei deutlicher Abweichung (&gt;5&nbsp;mm) lohnt es zu skalieren.
+  </div>
+
+  <h3 style="margin-top: 32px;">Online-Skalierung im Browser</h3>
+  <p>
+    <a href="https://www.viewstl.com/" target="_blank" rel="noopener">viewstl.com</a> öffnen, STL hochladen, im Reiter <em>Scale</em> den gewünschten Durchmesser eintragen. <strong>Wichtig: alle drei Achsen (X, Y, Z) gleich skalieren</strong> — sonst verzerrt sich der Rost.
+  </p>
+
+  <div class="inline-warn">
+    <strong>Hinweis zur Z-Höhe:</strong> Eine proportionale Skalierung verändert auch die Höhe des Rosts. Bei +10&nbsp;% Durchmesser wird der Inlay-Rost statt 53&nbsp;mm dann 58&nbsp;mm hoch — minimal weniger Substrat-Höhe im Eimer. Bei deutlicher Skalierung (&gt;15&nbsp;%) ggf. die Substrat-Tiefe entsprechend reduzieren oder die Z-Achse separat anpassen.
+  </div>
+
+  <h3 style="margin-top: 32px;">Alternative: Skalieren im Slicer</h3>
+  <p>
+    Wer eh sliced (PrusaSlicer, Cura, Bambu Studio), nutzt das eingebaute Skalier-Werkzeug. „Uniform Scaling" bzw. das Ketten-Symbol zwischen X/Y/Z aktivieren — dann werden alle Achsen synchron skaliert. Auch <a href="https://www.autodesk.com/products/fusion-360/personal" target="_blank" rel="noopener">Fusion 360</a> hat einen kostenlosen Online-Reader, der STLs proportional skalieren kann.
+  </p>
+
+  <h3 style="margin-top: 32px;">Für Designer: parametrische Versionen</h3>
+  <p>
+    Eine parametrische Quelldatei (Fusion 360 / FreeCAD / OpenSCAD) ist für die kommende Saison geplant. Damit lassen sich Eimer-Durchmesser, Standfußhöhe, Lochmuster und Wandstärken sauber neu kombinieren ohne STL-Verzerrung. Beiträge willkommen.
+  </p>
+</section>
+
+<section>
+  <div class="section-label">07 / Wasserreservoir und Überlauf-Bohrungen</div>
+  <h2>Damit das Wasser nie den Substratboden erreicht.</h2>
+
+  <p>
+    Im Eimer sitzt der gedruckte Erdrost auf seinen Standfüßen, darunter entsteht das Wasserreservoir. Wasser zieht durch den mit komprimiertem Substrat gefüllten Wickdocht-Becher in der Mitte nach oben — durch Kapillarwirkung. Wenn das Reservoir voll ist, soll überschüssiges Wasser ablaufen, bevor es das Substrat von unten erreicht.
+  </p>
+
+  <h3 style="margin-top: 28px;">Höhe der Überlauf-Bohrungen</h3>
+  <p>
+    Die Unterkante der Überlauf-Bohrungen muss <strong>5&nbsp;mm unter der Oberkante des Erdrosts</strong> liegen. So bleibt das Substrat selbst bei leicht schiefem Eimer trocken. Konkret:
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Variante</th>
+        <th>Rost-Höhe gesamt</th>
+        <th>Überlauf-Bohrung (Unterkante über Eimerboden)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Inlay (empfohlen)</td><td class="num">53 mm</td><td class="num">~48 mm</td></tr>
+      <tr><td>Honeycomb (experimentell)</td><td class="num">72 mm</td><td class="num">~67 mm</td></tr>
+    </tbody>
+  </table>
+
+  <div class="inline-tip">
+    <strong>Bohrgröße 3&nbsp;mm — bewusst klein.</strong> Reicht für Wasser-Überlauf vollkommen aus, hält Mücken und Insekten draußen, und das Substrat fällt nicht durch die Bohrungen ins Reservoir. Zwei bis drei Bohrungen rundum auf gleicher Höhe — am besten an einer Seite, von der der Eimer leicht weggeneigt steht, damit Überlauf gezielt abfließt.
+  </div>
+
+  <p>
+    Die Detail-Anleitung zur Eimer-Bohrung steht auf der <a href="diy.html">DIY-Bauanleitung</a>.
+  </p>
+</section>
+
+<section>
+  <div class="section-label">08 / Mitwirken</div>
+  <h2>Eigene Designs sind willkommen.</h2>
+
+  <p>
+    Das Open-Source-Projekt ist auf Beiträge angewiesen. Drei Bereiche, in denen besonders viel Spielraum ist:
+  </p>
+
+  <ul class="clean">
+    <li><strong>Honeycomb-Stabilität:</strong> ein verbessertes Wabendesign mit besserer Lastverteilung — oder ein zusätzlicher Stabilisierungs-Ring.</li>
+    <li><strong>Parametrische Quellen:</strong> Fusion 360, FreeCAD oder OpenSCAD-Skripte, mit denen die Standard-Maße sauber neu generiert werden können.</li>
+    <li><strong>Anpassungen für andere Eimer-Formate:</strong> Mörtelkübel (eckig), 30-Liter-Tonnen, kleine Balkonkübel — alles möglich.</li>
+  </ul>
+
+  <p style="margin-top: 20px;">
+    Beiträge gerne als Pull Request oder Issue im <a href="https://github.com/growtainer" target="_blank" rel="noopener">GitHub-Repo</a>. Lizenz: CC-BY-SA 4.0 für Inhalte, CERN-OHL-S 2.0 für Hardware-Designs.
+  </p>
+</section>
+
+<p class="muted" style="max-width: 1080px; margin: 0 auto; padding: 0 20px 40px; font-size: 12px;">
+  *) Wasserkapazitäts-Werte berechnet für einen typischen 20-Liter-Lebensmitteleimer mit ~270&nbsp;mm Innendurchmesser am Boden, mit 5&nbsp;mm Sicherheitsabstand zwischen Wasserspiegel und Rostoberfläche. Tatsächliche Werte variieren mit Eimer-Form und Überlauf-Bohrungs-Höhe.
+</p>
+
+<footer>
+  <div class="credit">Stefan Kutter · Open Source · CC-BY-SA 4.0</div>
+  <div>
+    <a href="mailto:mail@growtainer.org">mail@growtainer.org</a> ·
+    <a href="https://github.com/growtainer" target="_blank" rel="noopener">GitHub</a> ·
+    <a href="index.html">Start</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -9,80 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
 
 <style>
-  :root {
-    --bg: #f5efe3;
-    --bg-card: #fbf6ec;
-    --ink: #1c1812;
-    --ink-soft: #5a5147;
-    --rule: #d4c8b0;
-    --rule-soft: #e6dcc6;
-    --green: #4a6b3a;
-    --green-deep: #2f4524;
-    --water: #2c5e7a;
-    --brick: #a04830;
-    --gold: #b08a3c;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font-family: 'IBM Plex Sans', system-ui, sans-serif;
-    font-size: 16px; line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(circle at 15% 20%, rgba(74,107,58,0.04) 0%, transparent 50%),
-      radial-gradient(circle at 85% 75%, rgba(160,72,48,0.03) 0%, transparent 50%);
-  }
-  ::selection { background: var(--gold); color: var(--bg); }
-  a { color: var(--water); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-  a:hover { color: var(--brick); }
-  h1, h2, h3 {
-    font-family: 'Fraunces', 'Georgia', serif;
-    font-weight: 500; letter-spacing: -0.015em;
-    line-height: 1.1; margin: 0;
-    font-variation-settings: "SOFT" 50;
-  }
-  header.top {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(245,239,227,0.93);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--rule);
-  }
-  .topbar {
-    max-width: 1080px; margin: 0 auto; padding: 12px 20px;
-    display: flex; justify-content: space-between; align-items: baseline;
-  }
-  .brand {
-    font-family: 'Fraunces', serif; font-weight: 700; font-size: 20px;
-    letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
-  }
-  .brand span { color: var(--green); }
-  nav.top-links { display: flex; gap: 20px; font-size: 13px; }
-  nav.top-links a { color: var(--ink-soft); text-decoration: none; }
-  nav.top-links a:hover { color: var(--ink); }
-  @media (max-width: 640px) { nav.top-links { display: none; } }
-  section { padding: 48px 20px; max-width: 1080px; margin: 0 auto; }
-  section + section { border-top: 1px solid var(--rule-soft); }
-  @media (min-width: 760px) { section { padding: 64px 28px; } }
-  .section-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.15em; color: var(--ink-soft);
-    margin-bottom: 14px; display: flex; align-items: center; gap: 12px;
-  }
-  .section-label::before { content: ""; width: 22px; height: 1px; background: var(--ink-soft); }
-  h2 { font-size: clamp(24px, 4.5vw, 36px); margin-bottom: 16px; }
-
-  /* ── HERO with bigger images ── */
-  .hero {
+  /* page-specific overrides for the home hero */
+  .home-hero {
     padding-top: 36px; padding-bottom: 56px;
     display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center;
   }
   @media (min-width: 880px) {
-    /* give image side MORE room */
-    .hero { grid-template-columns: 1fr 1.15fr; gap: 56px; padding-top: 56px; padding-bottom: 80px; }
+    .home-hero { grid-template-columns: 1fr 1.15fr; gap: 56px; padding-top: 56px; padding-bottom: 80px; }
   }
   .hero-meta {
     font-family: 'IBM Plex Mono', monospace;
@@ -90,106 +26,12 @@
     text-transform: uppercase; letter-spacing: 0.12em;
     margin-bottom: 14px;
   }
-  .hero h1 { font-size: clamp(30px, 6.5vw, 50px); margin-bottom: 20px; }
-  .hero h1 em { font-style: italic; color: var(--green); font-variation-settings: "SOFT" 100; }
-  .hero-lede { font-size: 17px; color: var(--ink-soft); max-width: 480px; margin-bottom: 28px; }
-  .hero-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 20px; background: var(--ink); color: var(--bg);
-    text-decoration: none; font-size: 14px; font-weight: 500;
-    transition: background .15s;
-  }
-  .hero-cta:hover { background: var(--green-deep); color: var(--bg); }
-  .hero-cta-secondary { margin-left: 14px; font-size: 13px; color: var(--ink-soft); }
-
-  /* Image cards: bigger, clickable, mixed object-fit */
+  .home-hero h1 { font-size: clamp(30px, 7vw, 54px); }
+  .home-hero .lede { max-width: 480px; }
   .hero-images { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .hero-img {
-    background: var(--bg-card); border: 1px solid var(--rule);
-    padding: 14px; box-shadow: 4px 4px 0 var(--rule-soft);
-    display: flex; flex-direction: column;
-    cursor: zoom-in;
-    transition: transform .15s, box-shadow .15s;
-  }
-  .hero-img:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0 var(--rule-soft);
-  }
-  .hero-img-frame {
-    /* Forces a consistent aspect ratio for both cards on desktop */
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero-img img {
-    width: 100%; height: 100%; display: block;
-  }
-  /* sketch: contain so nothing gets cropped */
-  .hero-img.sketch img { object-fit: contain; padding: 4px; }
-  /* photo: cover so it fills nicely */
-  .hero-img.photo img { object-fit: cover; }
-  .hero-img figcaption {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px; color: var(--ink-soft);
-    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 12px;
-  }
-  @media (max-width: 540px) {
-    .hero-images { grid-template-columns: 1fr; }
-    .hero-img-frame { aspect-ratio: 4 / 3; }
-  }
+  @media (max-width: 540px) { .hero-images { grid-template-columns: 1fr; } }
 
-  /* ── Lightbox ── */
-  .lightbox {
-    position: fixed; inset: 0; z-index: 1000;
-    background: rgba(28, 24, 18, 0.92);
-    display: none; align-items: center; justify-content: center;
-    padding: 20px; cursor: zoom-out;
-    opacity: 0; transition: opacity .2s;
-  }
-  .lightbox.active { display: flex; opacity: 1; }
-  .lightbox img {
-    max-width: 100%; max-height: 90vh;
-    object-fit: contain;
-    background: var(--bg-card);
-    padding: 8px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-  .lightbox-close {
-    position: absolute; top: 20px; right: 24px;
-    color: var(--bg); background: none; border: none;
-    font-family: 'Fraunces', serif; font-size: 32px;
-    cursor: pointer; line-height: 1; padding: 0;
-  }
-  .lightbox-caption {
-    position: absolute; bottom: 24px; left: 50%;
-    transform: translateX(-50%);
-    color: var(--bg);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px; text-transform: uppercase;
-    letter-spacing: 0.12em;
-    text-align: center;
-  }
-
-  .values-intro { color: var(--ink-soft); margin-bottom: 32px; max-width: 640px; }
-  .values-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-  @media (min-width: 720px) { .values-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
-  .value { border-top: 2px solid var(--ink); padding-top: 16px; }
-  .value:nth-child(1) { border-color: var(--water); }
-  .value:nth-child(2) { border-color: var(--green); }
-  .value:nth-child(3) { border-color: var(--brick); }
-  .value-num {
-    font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700;
-    letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 6px;
-  }
-  .value h3 { font-size: 20px; margin-bottom: 10px; }
-  .value p { font-size: 14px; color: var(--ink-soft); margin: 0; }
-  .calc-intro { color: var(--ink-soft); max-width: 640px; margin-bottom: 24px; }
-  .calc-wrap {
-    background: var(--bg-card); border: 1px solid var(--rule);
-    padding: 24px; box-shadow: 4px 4px 0 var(--rule-soft);
-  }
-  @media (min-width: 720px) { .calc-wrap { padding: 32px; } }
+  /* Calculator-specific styles */
   .calc-form { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
   @media (min-width: 600px) { .calc-form { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
   .calc-field { display: flex; flex-direction: column; gap: 5px; }
@@ -236,7 +78,22 @@
   .calc-note + .calc-note { margin-top: 8px; }
   .calc-note.subtle { border-left-color: var(--rule); font-size: 12px; }
   .calc-note.subtle sup { color: var(--brick); font-weight: 600; }
-  .roadmap-intro { color: var(--ink-soft); max-width: 640px; margin-bottom: 32px; }
+
+  /* Three values cards on home */
+  .values-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 720px) { .values-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; } }
+  .value { border-top: 2px solid var(--ink); padding-top: 16px; }
+  .value:nth-child(1) { border-color: var(--water); }
+  .value:nth-child(2) { border-color: var(--green); }
+  .value:nth-child(3) { border-color: var(--brick); }
+  .value-num {
+    font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 6px;
+  }
+  .value h3 { font-size: 20px; margin-bottom: 10px; }
+  .value p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+
+  /* Roadmap on home */
   .roadmap-list { list-style: none; padding: 0; margin: 0; }
   .roadmap-list li {
     display: grid; grid-template-columns: 1fr; gap: 4px;
@@ -254,16 +111,44 @@
   }
   .roadmap-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; }
   .roadmap-detail { color: var(--ink-soft); font-size: 14px; }
-  .why-intro { color: var(--ink-soft); max-width: 680px; margin-bottom: 28px; }
+
+  /* Why grid on home */
   .why-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
   @media (min-width: 760px) { .why-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
   .why-block h3 { font-size: 18px; margin-bottom: 10px; color: var(--green-deep); }
   .why-block p { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 12px; }
-  .why-block .src {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px; color: var(--ink-soft);
-    margin-top: 10px; opacity: 0.8;
+
+  /* Hero img card cursor + hover */
+  .hero-img {
+    background: var(--bg-card); border: 1px solid var(--rule);
+    padding: 14px; box-shadow: 4px 4px 0 var(--rule-soft);
+    display: flex; flex-direction: column;
+    cursor: zoom-in;
+    transition: transform .15s, box-shadow .15s;
   }
+  .hero-img:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--rule-soft);
+  }
+  .hero-img-frame {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-img img { width: 100%; height: 100%; display: block; }
+  .hero-img.sketch img { object-fit: contain; padding: 4px; }
+  .hero-img.photo img { object-fit: cover; }
+  .hero-img figcaption {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 12px;
+  }
+  @media (max-width: 540px) {
+    .hero-img-frame { aspect-ratio: 4 / 3; }
+  }
+
+  /* Background grid */
   .bg-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
   @media (min-width: 600px) { .bg-grid { grid-template-columns: repeat(2, 1fr); gap: 8px 36px; } }
   .bg-item { padding: 14px 0; border-top: 1px solid var(--rule-soft); }
@@ -278,16 +163,6 @@
   }
   .bg-item a:hover { border-color: var(--green); color: var(--green-deep); }
   .bg-item-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
-  footer {
-    margin-top: 40px; border-top: 1px solid var(--rule);
-    padding: 28px 20px 40px; max-width: 1080px;
-    margin-left: auto; margin-right: auto;
-    display: flex; justify-content: space-between; gap: 16px;
-    font-size: 12px; color: var(--ink-soft); flex-wrap: wrap;
-  }
-  footer .credit { font-family: 'Fraunces', serif; font-style: italic; }
-  footer a { color: var(--ink-soft); }
-  @media print { body { background: white; } header.top, .calc-wrap { background: white; } }
 </style>
 </head>
 <body>
@@ -296,10 +171,10 @@
   <div class="topbar">
     <a href="#top" class="brand">growtainer<span>.</span>org</a>
     <nav class="top-links">
-      <a href="#prinzip">Prinzip</a>
-      <a href="#rechner">Rechner</a>
-      <a href="#fahrplan">Fahrplan</a>
-      <a href="#warum">Warum</a>
+      <a href="diy.html">DIY-Bauanleitung</a>
+      <a href="substrat.html">Substrat</a>
+      <a href="3d-druck.html">3D-Druck</a>
+      <a href="microgreens.html">Microgreens</a>
       <a href="https://github.com/growtainer" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
@@ -307,16 +182,16 @@
 
 <a id="top"></a>
 
-<section class="hero">
+<section class="home-hero">
   <div>
     <div class="hero-meta">Open-Source Pflanzsystem · Anleitungen und Tipps</div>
     <h1>Mineralreicher Bio-Eigenanbau —&nbsp;<em>einfach gemacht</em>.</h1>
-    <p class="hero-lede">
+    <p class="lede">
       Selbstbewässernde &amp; selbstdüngende Pflanzkübel mit maximaler Mineraldichte.
       Gemüse mit Geschmack und Gehalt, die so kein Supermarkt mehr liefern kann.
     </p>
-    <a href="#rechner" class="hero-cta">Substrat-Rechner →</a>
-    <a href="#fahrplan" class="hero-cta-secondary">Eigenbau-Fahrplan</a>
+    <a href="#rechner" class="cta">Substrat-Rechner →</a>
+    <a href="#fahrplan" class="cta-secondary">Eigenbau-Fahrplan</a>
   </div>
   <div class="hero-images">
     <figure class="hero-img sketch" data-zoom="assets/images/growtainer_principle.jpg" data-caption="Querschnitt-Prinzip · Skizze">
@@ -327,13 +202,13 @@
       </div>
       <figcaption>Querschnitt-Prinzip · Skizze</figcaption>
     </figure>
-    <figure class="hero-img photo" data-zoom="assets/images/paprika_growtainer.jpg" data-caption="Paprika im späten September">
+    <figure class="hero-img photo" data-zoom="assets/images/paprika_growtainer.jpg" data-caption="Paprika im Doppeleimer-Eigenbau (DIY) Growtainer">
       <div class="hero-img-frame">
         <img src="assets/images/paprika_growtainer.jpg"
-             alt="Üppige Paprikapflanze mit grünen und orangefarbenen Früchten, gewachsen in einem Growtainer-Eimer."
+             alt="Üppige Paprikapflanze mit grünen und orangefarbenen Früchten, gewachsen in einem Doppeleimer-Eigenbau-Growtainer."
              loading="eager">
       </div>
-      <figcaption>Paprika im späten September</figcaption>
+      <figcaption>Paprika im Doppeleimer-Eigenbau (DIY) Growtainer</figcaption>
     </figure>
   </div>
 </section>
@@ -341,7 +216,7 @@
 <section id="prinzip">
   <div class="section-label">01 / Was der Growtainer leistet</div>
   <h2>Drei Vorteile in einem genial einfachen System.</h2>
-  <p class="values-intro">
+  <p class="lede">
     Klassischer Anbau in Beet oder Töpfen wäscht Dünger und Mineralien mit Gießwasser und Regen aus: Wertverlust, Umweltproblem — und dennoch brauchen die Methoden viel Aufmerksamkeit und Pflege. Das Growtainer-Prinzip ändert das, überall wo es genug Licht für Pflanzen gibt.
   </p>
   <div class="values-grid">
@@ -361,15 +236,18 @@
       <p>Urgesteinsmehl für Spurenelemente, Dolomit für Calcium-Magnesium in optimaler Kombination. Wurmhumus und Kompost für Bodenleben und als Aufnahmehelfer der Mineralien.</p>
     </div>
   </div>
+  <p style="margin-top: 24px; text-align: center;">
+    <a href="substrat.html" class="cta-secondary">Substrat-Theorie im Detail →</a>
+  </p>
 </section>
 
 <section id="rechner">
   <div class="section-label">02 / Substrat-Rechner</div>
   <h2>Was kommt rein, in welcher Menge.</h2>
-  <p class="calc-intro">
-    Einfach Eimer-Volumen und Anzahl eintragen und Zutatenmengen berechnen lassen. Für einen einfachen Schnellstart: kommerzielle Bio-Gemüseerde auswählen und sehen, wie sie auf Growtainer-Standard aufgewertet werden kann. Profi-Mischer wählen Vollvariante&nbsp;A oder B aus Protokoll&nbsp;3.
+  <p class="lede">
+    Einfach Eimer-Volumen und Anzahl eintragen und Zutatenmengen berechnen lassen. Für einen einfachen Schnellstart: kommerzielle Bio-Gemüseerde auswählen und sehen, wie sie auf Growtainer-Standard aufgewertet werden kann. Profi-Mischer wählen Vollvariante&nbsp;A oder B aus <a href="substrat.html">der Substrat-Theorie</a>.
   </p>
-  <div class="calc-wrap">
+  <div class="card" style="background: var(--bg-card);">
     <div class="calc-form">
       <div class="calc-field">
         <label for="bucketVol">Eimer-Volumen (Liter)</label>
@@ -383,8 +261,8 @@
         <label for="variant">Substrat-Variante</label>
         <select id="variant">
           <option value="quickstart">Quickstart (Bio-Gemüseerde + Booster)</option>
-          <option value="A">Vollvariante A — Kokosfaser-Basis (P3)</option>
-          <option value="B">Vollvariante B — CRH-aufgewertet (P3)</option>
+          <option value="A">Vollvariante A — Kokosfaser-Basis</option>
+          <option value="B">Vollvariante B — CRH-aufgewertet</option>
         </select>
       </div>
       <div class="calc-field" id="baseSubstrateField">
@@ -419,7 +297,7 @@
 <section id="fahrplan">
   <div class="section-label">03 / Fahrplan</div>
   <h2>Vom Gartenschuppen oder Baumarkt zur Pflanzung.</h2>
-  <p class="roadmap-intro">
+  <p class="lede">
     Im einfachsten Fall mit ein wenig Geschick: ein einziger Tag. Realistisch: paar Tage Vorlauf fürs Auftreiben von Lebensmitteleimern oder den 3D-Druck der Erdroste, sonst alles vom Baumarkt direkt.
   </p>
   <ol class="roadmap-list">
@@ -434,14 +312,14 @@
       <span class="roadmap-step">Schritt 1.1<br><span style="opacity:0.7;font-weight:400;font-size:11px">optional</span></span>
       <span class="roadmap-title">Erdrost drucken</span>
       <span class="roadmap-detail">
-        STL aus dem Repo, ggf. selbst auf Eimerdurchmesser skalieren. Spart einen zweiten Eimer oder Eigenbau-Handwerk. Eigener 3D-Drucker (PETG, ~3 € Material) oder Online-Druck-Service (Hubs, Burms Berlin, Zelta3D — ~25–40 €, 5–10 Werktage).
+        STL aus dem Repo, ggf. selbst auf Eimerdurchmesser skalieren. Spart einen zweiten Eimer oder Eigenbau-Handwerk. Eigener 3D-Drucker oder Online-Druck-Service. Details auf der <a href="3d-druck.html">3D-Druck-Seite</a>.
       </span>
     </li>
     <li>
       <span class="roadmap-step">Schritt 2</span>
       <span class="roadmap-title">Substrat schichten und befüllen</span>
       <span class="roadmap-detail">
-        Erdrost und Befüllrohr einsetzen, Überlauflöcher bohren, Substrat einfüllen. Dolomit in die obersten 5–8&nbsp;cm einarbeiten. Düngerstreifen aufbringen, mit Folie abdecken — <strong>Dünger nicht ins Substrat einmischen</strong>.
+        Erdrost, Wickdocht-Becher und Gießrohr einsetzen, Überlauflöcher bohren (3&nbsp;mm). Substrat im Becher festdrücken, drumherum locker einfüllen. Dolomit in die obersten 5–8&nbsp;cm einarbeiten. Düngerstreifen aufbringen, mit Folie abdecken — <strong>Dünger nicht ins Substrat einmischen</strong>. Detail auf der <a href="diy.html">DIY-Bauanleitung</a>.
       </span>
     </li>
     <li>
@@ -452,12 +330,15 @@
       </span>
     </li>
   </ol>
+  <p style="margin-top: 24px; text-align: center;">
+    <a href="diy.html" class="cta-secondary">Vollständige DIY-Bauanleitung →</a>
+  </p>
 </section>
 
 <section id="warum">
   <div class="section-label">04 / Warum „growtainern" sich mehrfach lohnt</div>
   <h2>Mehr als nur Gemüse.</h2>
-  <p class="why-intro">
+  <p class="lede">
     Der Growtainer löst mehrere Probleme parallel: das Vitalstoffdefizit der industriellen Lebensmittel, das Platzproblem herkömmlicher Anbaumethoden, die Einstiegshürde ohne Gartenerfahrung (selbstregulierend) und das psychische Defizit durch fehlenden Pflanzenkontakt im Alltag. Zudem schmeckt die frische Ernte unschlagbar gut.
   </p>
   <div class="why-grid">
@@ -491,7 +372,7 @@
     <div class="bg-item">
       <div class="bg-item-label">3D-Druckdaten STL · Dokumentation</div>
       <a href="https://github.com/growtainer" target="_blank" rel="noopener">github.com/growtainer</a>
-      <div class="bg-item-note">DIY-Anleitung, 3D-Druck-Dateien, Substrat-Rezepte. CC-BY-SA 4.0.</div>
+      <div class="bg-item-note">Repository mit STLs, Anleitungen, Quellcode der Webseite. CC-BY-SA 4.0.</div>
     </div>
     <div class="bg-item">
       <div class="bg-item-label">Gesundheitliche Grundlagen · Praxisprotokoll</div>
@@ -568,7 +449,7 @@ const RECIPES = {
 
 const NOTES = {
   quickstart: 'Quickstart-Pfad: kommerzielles Bio-Substrat als Träger plus Mineral-Booster. Robust gegen Mischfehler — empfohlen für die erste Saison.',
-  A: 'Vollvariante A aus P3. Alle Komponenten gut verfügbar. Perlit nicht zu fein, kein Staub.',
+  A: 'Vollvariante A. Klassisch-bewährt, alle Komponenten gut verfügbar. Perlit nicht zu fein, kein Staub.',
   B: 'Vollvariante B mit CRH (carbonisierte Reisspelzen) — höhere Kationen-Austausch-Kapazität, Si-Zugabe gegen Aluminium-Last. Empfohlen wenn CRH verfügbar.'
 };
 
@@ -640,12 +521,11 @@ function recalc() {
 );
 recalc();
 
-/* ── Lightbox ── */
+/* Lightbox */
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxCaption = document.getElementById('lightbox-caption');
 const lightboxClose = document.querySelector('.lightbox-close');
-
 function openLightbox(src, caption) {
   lightboxImg.src = src;
   lightboxCaption.textContent = caption || '';
@@ -655,21 +535,14 @@ function openLightbox(src, caption) {
 function closeLightbox() {
   lightbox.classList.remove('active');
   document.body.style.overflow = '';
-  // Defer src clear so transition isn't jarring
   setTimeout(() => { lightboxImg.src = ''; }, 200);
 }
-
 document.querySelectorAll('.hero-img[data-zoom]').forEach(fig => {
-  fig.addEventListener('click', () => {
-    openLightbox(fig.dataset.zoom, fig.dataset.caption);
-  });
+  fig.addEventListener('click', () => openLightbox(fig.dataset.zoom, fig.dataset.caption));
 });
-
 lightbox.addEventListener('click', (e) => {
-  // close on backdrop click but not when clicking the image itself
   if (e.target === lightbox || e.target === lightboxClose) closeLightbox();
 });
-
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
 });
